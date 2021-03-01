@@ -1,0 +1,63 @@
+网购
+题目描述：如果今天是双十一，衣服打七折，如果是双十二，衣服打八折，如果有优惠券（优惠券只限于双十一，双十二使用），如果有优惠券可以额外减50，求最终所花的钱数。
+输入描述：一行，四个数，第一个看重的衣服的价格，第二和第三分别表示当天的月份和天数，第四个表示是否有优惠券（有优惠券用1表示，没有则用0表示）
+输出描述：一行，结果保留两位小数（提示：不要指望商家找你钱）
+方法一：
+ #include<stdio.h>
+int main(void)
+{
+	double price = 0.0;
+	int m = 0;
+	int n = 0;
+	int flag = 0;
+	scanf("%lf %d %d %d", &price, &m, &n, &flag);
+	if((m==11)&&(n==11))
+	{
+		price *= 0.7;
+		if(flag == 1)
+		{
+			price -= 50;
+		}
+	}
+	if((m==12)&&(n==12))
+	{
+		price *= 0.8;
+		if(flag == 1)
+		{
+			price -= 50;
+		}
+	}
+	if(price<0.0)
+	{
+	    price = 0.0;
+	}
+    printf("%.2lf", price);
+    return 0;
+}
+
+方法二：
+ #include<stdio.h>
+int main(void)
+{
+	double price = 0.0;
+	int m = 0;
+	int n = 0;
+	int flag = 0;
+	double cut = 1.0;
+	scanf("%lf %d %d %d", &price, &m, &n, &flag);
+	if((m==11)&&(n==11))
+	{
+	      cut = 0.7;
+	}
+	if((m==12)&&(n==12))
+	{
+		cut = 0.8;
+	}
+	price = price*cut - flag;
+	if(price<0.0)
+	{
+	    price = 0.0;
+	}
+    printf("%.2lf", price);
+    return 0;
+}
